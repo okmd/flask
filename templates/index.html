@@ -2,51 +2,74 @@
 {%block title%}Home{%endblock%}
 {%block body%}
 <div class="container">
-	<h1>Emplyee Database</h1>
-	<form action="/", method="POST">
-	  <div class="form-group">
-	    <label for="empID">Employee ID</label>
-	    <input type="text" class="form-control" id="empID" name="emp_id" placeholder="Enter Id">
-	  </div>
-	  <div class="form-group">
-	    <label for="empName">Name</label>
-	    <input type="text" class="form-control" name="emp_name" id="empName" placeholder="Employee Name">
-	  </div>
-	  <div class="form-group">
-	    <label for="empName">Position</label>
-	    <input type="text" class="form-control" name="emp_position" id="empPosition" placeholder="Employee Position">
-	  </div>
-	  <button type="submit" class="btn btn-primary">Insert</button>
-	</form>
+	<div class="row">
+		<div class="alert alert-success col-md-12" role="alert">
+			  <h2 class="text-center"> Employees Management System</h2>
+		</div>
+		<form action="/", method="POST" class="col-md-12">
+		  <div class="form-group">
+		    <label for="empID">Employee ID</label>
+		    <input type="text" class="form-control"  id="empID" name="emp_id" placeholder="Enter Employee ID">
+		  </div>
+		  <div class="form-group">
+		    <label for="empName">Name</label>
+		    <input type="text" class="form-control"  name="emp_name" id="empName" placeholder="Employee Name">
+		  </div>
+		  <div class="form-group">
+		    <label for="empName">Position</label>
+		    <input type="text" class="form-control"  name="emp_position" id="empPosition" placeholder="Employee Position">
+		  </div>
 
-	<table class="table table-responsive">
-	  <thead class="thead-dark">
-	    <tr>
-	      <th scope="col">S. No</th>
-	      <th scope="col">Employee ID</th>
-	      <th scope="col">Name</th>
-	      <th scope="col">Position</th>
-	      <th scope="col">Date of Joining</th>
-	      <th scope="col">Update</th>
-	      <th scope="col">Delete</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  	{% set serial_number = 1 %}
-	  	{% for emp in employees %}
-	    <tr>
-	      <th scope="row">{{serial_number}}</th>
-	      <td>{{emp[0]}}</td>
-	      <td>{{emp[1]}}</td>
-	      <td>{{emp[2]}}</td>
-	      <td>{{emp[3]}}</td>
-	      <td><a href="update/{{emp[0]}}"> <button class="btn btn-info">Update</button></a></td>
-	      <td><a href="delete/{{emp[0]}}"> <button class="btn btn-danger">Delete</button></a></td>
-	    </tr>
-	    {% set serial_number = serial_number + 1 %}
-	    {% endfor %}
-	  </tbody>
-	</table>
+		  <div class="form-group">
+		    <label for="empDoj">DOJ</label>
+		    <input type="date" class="form-control" name="emp_doj" id="empDoj" placeholder="Employee Date of Joining">
+		  </div>
+		  <button type="submit" class=" btn btn-primary">Add New Employee</button>
+		</form>
+	</div>
+	<hr class="hr">
+	<div class="row">
+		{% if employees|length == 0 %}
+			<div class="alert alert-danger col-md-12" role="alert">
+			  <h2 class="text-center"> Kindly Hire someone! No Employees here!</h2>
+			</div>
+		{% else %}
+		<div class="alert alert-success col-md-12" role="alert">
+			  <h2 class="text-center"> Employees Details!</h2>
+		</div>
+		<div class="col-md-12">
+			<table class="table table-striped">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">S. No</th>
+			      <th scope="col">Employee ID</th>
+			      <th scope="col">Name</th>
+			      <th scope="col">Position</th>
+			      <th scope="col">Date of Joining</th>
+			      <th scope="col">Update</th>
+			      <th scope="col">Delete</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	{% set serial_number = 1 %}
+			  	{% for emp in employees %}
+			    <tr>
+			      <th scope="row">{{serial_number}}</th>
+			      <td>{{emp[0]}}</td>
+			      <td>{{emp[1]}}</td>
+			      <td>{{emp[2]}}</td>
+			      <td>{{emp[3]}}</td>
+			      <td><a href="/update/{{emp[0]}}"> <button class="btn btn-info">Update</button></a></td>
+			      <td><a href="/delete/{{emp[0]}}"> <button class="btn btn-danger">Delete</button></a></td>
+			    </tr>
+			    {% set serial_number = serial_number + 1 %}
+			    {% endfor %}
+			    {% endif %}
+			  </tbody>
+			</table>
+		</div>
+	</div>
+	
 </div>
 
 {%endblock%}

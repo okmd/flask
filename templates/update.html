@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{%block title%}Home{%endblock%}
+{%block body%}
+<div class="container">
+	<div class="alert alert-success col-md-12" role="alert">
+		  <h2 class="text-center"> Employees Management System</h2>
+	</div>
+	<form action="/update/{{emp[0]}}", method="POST">
+	  <div class="form-group">
+	    <label for="empID">Employee ID</label>
+	    <input type="text"  disabled class="form-control" value="{{emp[0]}}" id="empID" name="emp_id" placeholder="Enter Id">
+	  </div>
+	  <div class="form-group">
+	    <label for="empName">Name</label>
+	    <input type="text" class="form-control" value="{{emp[1]}}" name="emp_name" id="empName" placeholder="Employee Name">
+	  </div>
+	  <div class="form-group">
+	    <label for="empName">Position</label>
+	    <input type="text" class="form-control" value="{{emp[2]}}" name="emp_position" id="empPosition" placeholder="Employee Position">
+	  </div>
+
+	  <div class="form-group">
+	    <label for="empDoj">DOJ</label>
+	    <input type="date" class="form-control" value="{{emp[3]}}" name="emp_doj" id="empDoj" placeholder="Employee Date of Joining">
+	  </div>
+	  <button type="submit" class="btn btn-primary">Update</button>
+	</form>
+
+</div>
+
+{%endblock%}
